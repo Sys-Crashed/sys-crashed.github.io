@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="image/png" href="/resource/SysCrashed.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysCrashed</title>
+</head>
+<body>
+    <h1>SysCrashed</h1>
+    <div class="nav-container">
+        <nav class="nav-side">😥</nav>
+        <nav class="nav-main">
+            <ul>
+                <li><a href="index.html">主页</a></li>
+                <li><a href="contact.html">联系方式</a></li>
+                <li><a href="games.html">在线游戏</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-side">🤣</nav>
+    </div>
+
+    <div class="typing-container">
+        <p class="typing-text"></p>
+    </div>
+
+    <div id="digital-clock"></div>
+    <div id="analog-clock">
+        <div class="hour-marks"></div>
+        <div class="hand" id="hour-hand"></div>
+        <div class="hand" id="minute-hand"></div>
+        <div class="hand" id="second-hand"></div>
+        <div class="clock-center"></div>
+    </div>
+
+    <footer>
+        <div>© 2025 SysCrashed. All rights reserved.</div>
+    </footer>
+
+    <script>
+        const messages = [
+            ":( Your PC ran into a problem...",
+            "System has crush!!!",
+            "开挂不能提高智力",
+            "v我50爱你一天", 
+            "蓝屏钙，好喝的钙",
+            "Operating System又崩溃了...",
+            "100÷3",
+            "CloudFlare正保护着此站点",
+            "对此网站DDoS攻击会亖",
+            "我的新键盘好好看啊~~~",
+            "都说骗人是小狗,可小狗才不会骗人!"
+        ];
+
+        const typingText = document.querySelector('.typing-text');
+        let messageIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const pauseDelay = 1500;
+
+        function typeEffect() {
+            const currentMessage = messages[messageIndex];
+            const delay = 300 / currentMessage.length;
+
+            if (isDeleting) {
+                typingText.textContent = currentMessage.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentMessage.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentMessage.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, pauseDelay);
+                return;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                messageIndex = (messageIndex + 1) % messages.length;
+                setTimeout(typeEffect, 1500 / messages[messageIndex].length);
+                return;
+            }
+
+            setTimeout(typeEffect, delay);
+        }
+
+        typeEffect();
+
+        // 添加导航栏联动动画
+        const navContainer = document.querySelector('.nav-container');
+        const navElements = document.querySelectorAll('.nav-container nav');
+        
+        navElements.forEach(nav => {
+            nav.addEventListener('mouseover', () => {
+                navElements.forEach(element => {
+                    element.style.transform = 'translateY(-5px)';
+                });
+            });
+            
+            nav.addEventListener('mouseout', () => {
+                navElements.forEach(element => {
+                    element.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // 创建时钟刻度
+        const hourMarks = document.querySelector('.hour-marks');
+        for (let i = 0; i < 60; i++) {
+            const mark = document.createElement('div');
+            if (i % 5 === 0) {
+                // 整点刻度
+                mark.className = 'mark-hour';
+                mark.style.transform = `rotate(${i * 6}deg)`;
+            } else {
+                // 分钟刻度
+                mark.className = 'mark-minute';
+                mark.style.transform = `rotate(${i * 6}deg)`;
+            }
+            hourMarks.appendChild(mark);
+        }
+
+        // 更新时钟显示
+        function updateClocks() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // 更新数字时钟
+            document.getElementById('digital-clock').textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            // 更新模拟时钟
+            const hourDeg = (hours % 12 + minutes / 60) * 30;
+            const minuteDeg = (minutes + seconds / 60) * 6;
+            const secondDeg = seconds * 6;
+
+            document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks();
+    </script>
+</body>
+</html>

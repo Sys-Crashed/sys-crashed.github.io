@@ -1,0 +1,198 @@
+/* 全局字体定义 */
+@font-face {
+    font-family: 'YaHei Consolas';
+    src: url('../fonts/YaHei.Consolas.1.12.ttf') format('truetype');
+}
+
+/* 全局字体应用 */
+body, h1, h2, h3, p, nav, ul, li, a, span, footer {
+    font-family: 'YaHei Consolas', sans-serif;
+}
+
+body {
+    text-align: center;
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    margin: 0;
+    padding-top: 10vh;
+    position: relative;
+    font-family: 'YaHei Consolas', sans-serif;
+}
+.nav-container {
+    display: flex;
+    gap: 15px;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 0px;
+    margin: 15px auto;
+    justify-content: center;
+    align-items: center;
+}
+.nav-main {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 1rem 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.nav-side {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.5em;
+}
+.nav-container:hover .nav-main,
+.nav-container:hover .nav-side {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+nav li {
+    margin: 5px 20px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+nav li:hover {
+    transform: scale(1.1);
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'YaHei Consolas', sans-serif;
+    white-space: nowrap;
+}
+nav a:hover {
+    color: rgb(0, 195, 255);
+    background: rgba(255, 255, 255, 0.2);
+}
+h1 {
+    display: contents;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    margin-top: 0;
+}
+.typing-container {
+    min-height: 50px;
+    margin: 15px 0;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    color: #666;
+}
+.typing-text {
+    margin: 0;
+    color: #333;
+    font-family: 'YaHei Consolas', sans-serif;
+    font-size: 1.2em;
+}
+#digital-clock {
+    font-size: 2em;
+    font-family: 'YaHei Consolas', sans-serif;
+}
+#analog-clock {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: relative;
+    margin: 20px auto;
+}
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background: #333;
+}
+#hour-hand {
+    width: 4px;
+    height: 60px;
+    margin-left: -2px;
+}
+#minute-hand {
+    width: 3px;
+    height: 80px;
+    margin-left: -1.5px;
+}
+#second-hand {
+    width: 2px;
+    height: 90px;
+    margin-left: -1px;
+    background: #f00;
+}
+.clock-center {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.hour-marks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.hour-marks div {
+    position: absolute;
+    left: 50%;
+    transform-origin: 50% 100px;
+}
+.hour-marks .mark-minute {
+    width: 1px;
+    height: 5px;
+    background: #666;
+    margin-left: -0.5px;
+}
+.hour-marks .mark-hour {
+    width: 2px;
+    height: 10px;
+    background: #333;
+    margin-left: -1px;
+}
+.hour-marks .mark-number {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    transform-origin: 50% 85px;
+    margin-left: -8px;
+    font-family: 'YaHei Consolas', sans-serif;
+}
